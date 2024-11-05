@@ -18,7 +18,6 @@ def funobj(sol):
 
     # Conta o número de conflitos
     conflitos = np.sum(dn[dn > 1] - 1) + np.sum(dp[dp > 1] - 1)
-
     return conflitos
 
 # Gerar a próxima solução (troca os vizinhos)
@@ -73,7 +72,7 @@ tempo = 5  # Tempo máximo de um movimento tabu
 tempofreq = 5  # Frequência máxima de um movimento
 registraTabuMelhor = False  # Registra melhor movimento
 forcarConv = True # Forçar convergência
-reiniciar_limite = 500  # Limite de iterações
+reiniciar_limite = 300  # Limite de iterações
 
 # Função para inicializar a solução
 def inicializa_solucao(n):

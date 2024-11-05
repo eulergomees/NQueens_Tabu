@@ -36,7 +36,7 @@ def gera_proxima_solucao(bestsol, fitbestsol, tabu, n, tempo_freq, registra_tabu
 
             # Calcula o fitness do vizinho
             fitness = funobj(bestsol)
-            aceita_vizinho = fitness <= melhor_fitness if not forcar_conv else fitness < melhor_fitness
+            aceita_vizinho = fitness >= melhor_fitness if not forcar_conv else fitness > melhor_fitness
 
             if aceita_vizinho:
                 melhor_fitness = fitness
@@ -75,7 +75,7 @@ def atualiza_lista_tabu(tabu):
 
 # Parametros do algoritmo
 n = 50  # Número de rainhas
-maxit = 5000  # Número máximo de iterações
+maxit = 5000 # Número máximo de iterações
 tempo = 3  # Tempo máximo de um movimento tabu
 tempo_freq = 5  # Frequência máxima de um movimento
 registra_tabu_melhor = True  # Registra melhor movimento
@@ -99,9 +99,13 @@ sol_atual, fit_atual = inicia_solucao(n)
 movs_possiveis = list(itertools.combinations(range(n), 2))
 tabu = np.array([[mov[0], mov[1], 0, 0] for mov in movs_possiveis], dtype=int)
 
+
 # Melhor solução encontrada
 melhor_sol = sol_atual.copy()
 melhor_fit = fit_atual
+
+pior_sol = sol_atual.copy()
+pior_fit = fit_atual
 
 # --------------------------------------------------------------
 
@@ -139,7 +143,8 @@ execution_time = end_time - start_time
 
 # --------------------------------------------------------------
 
-# Exibe a melhor solução
-print(f"Melhor solução: {melhor_sol}")
-print(f"Conflitos na melhor solução: {melhor_fit}")
+# Exibe a pior solução
+print(f"Melhor solução: {pior_sol}")
+print(f"Conflitos na melhor solução: {pior_fit}")
 print(f"Tempo de execução: {execution_time:.4f} segundos")
+
